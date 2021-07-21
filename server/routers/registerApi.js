@@ -27,16 +27,17 @@ router.post('/', async (req, res) => {
     }
 
     const data = {
-        name: req.body.name,
+        username: req.body.username,
         email: req.body.email,
         password: user_password,
-        age: req.body.age
+        age: req.body.age,
+        friends: [],
     };
 
     const UserData = await new User(data);
 
     try {
-        const saved_user = await UserData.save();
+        const saved_user = await User.collection.insertOne(UserData);
         res.status(200).send(saved_user);
     }
 

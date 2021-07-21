@@ -22,5 +22,15 @@ const registerApi = require('./routers/registerApi');
 
 app.use('/api/register', registerApi);
 
+// Login Router
+const LoginApi = require("./routers/loginApi");
+
+app.use("/api/login", LoginApi);
+
+// The auth system
+const auth = require("./routers/auth");
+
+app.use("/user/:token", auth);
+
 // Run server
 app.listen(port, () => console.log(`Server is running at port: ${port}`));
